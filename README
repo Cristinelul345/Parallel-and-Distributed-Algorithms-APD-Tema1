@@ -1,0 +1,31 @@
+Ciopa Cristian-Mihai
+
+Am creat thread-urile in functia run_genetic_algorithm, pe care am extins-o
+sa primeasca un parametru aditional P - nr de thread-uri.
+Am facut o structura care sa tina un void*, apoi folosesc un vector
+de astfel de structuri pentru a tine practic un vector de elemente
+generice, pe care le pasez ca parametru lui thread_fct. In
+aceasta functie practic am adaugat for ul dupa k de la 0 la 
+numarul de generatii. 
+
+In aceasta structura am trimis pointeri catre vectorii de
+geneartie curenta/urmatoare si bariera pentru ca vreau
+sa am cate o singura instanta concreta a lor, care sa poata
+fi accesata de toate thread-urile din aplicatie.
+
+Am paralelizat for urile ca in laborator, unde am impartit
+nr de interatii in mod echitabil la cele P thread uri.
+Fiecare thread va lucra pe bucata lui de la start la end.
+
+Apoi am paralelizat sortarea, facand quick sort pe fiecare
+P subvectori, apoi facand merge.
+
+Pentru merge am luat functia din lab (!!!)  Pt asta, am facut
+o functie de merge general care apeleaza functia din lab pe
+vectori 2 cate 2 pana ii interclaseaza pe toti.
+
+Am reunit cele 2 for uri pentru mutate_bit_string deoarece
+ambele se parcurgeau de la 0 la 2 * count / 10; Pt crossover
+am impartit in mod similar dar am avut grija ca start sa fie mereu nr par.
+
+La final am dat join la toate thread-urile.
